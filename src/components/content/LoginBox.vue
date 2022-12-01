@@ -23,6 +23,7 @@ export default {
             if(this.checkLogin()) {
                 let userName = this.$refs.userName.value;
                 let password = this.$refs.password.value;
+                
             }
         },
         checkLogin() {
