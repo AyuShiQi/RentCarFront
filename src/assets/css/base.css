@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2e2e2e;
+}
+
+li {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h6,
+h6 {
+    font-weight: 500;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
