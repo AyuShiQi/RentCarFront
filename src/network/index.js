@@ -140,3 +140,42 @@ export const rentCar = (vehicleId,days) => {
         .catch(err=>reject(err));
     })
 }
+
+/**
+ * 获取所有的该用户订单
+ * @param {*} userName 用户名
+ * @returns Promise 
+ */
+export const getOrder = (userName) => {
+    return new Promise((resolve,reject)=>{
+        const instance = Axios.create({
+            baseURL: '',
+            timeout: 2000
+        });
+
+        instance.get("/getOrder",{
+            params: {userName}
+        }).then(val=>resolve(val.data))
+        .catch(err=>reject(err));
+    })
+}
+
+/**
+ * 付费车
+ * @param {*} userName 
+ * @param {*} vehicleId 
+ * @returns 
+ */
+export const payCar = (userName,vehicleId) => {
+    return new Promise((resolve,reject)=>{
+        const instance = Axios.create({
+            baseURL: '',
+            timeout: 2000
+        });
+
+        instance.get("/getOrder",{
+            params: {userName,vehicleId}
+        }).then(val=>resolve(val))
+        .catch(err=>reject(err));
+    })
+}

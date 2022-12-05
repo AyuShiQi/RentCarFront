@@ -112,6 +112,4 @@ export default {
     .table-content .link-option:nth-child(even) {
         color: #8da3f0;
     }
-
-
 </style>

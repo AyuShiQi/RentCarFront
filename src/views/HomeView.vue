@@ -7,10 +7,11 @@
 <script>
 import AdminHome from '../components/content/AdminHome'
 import UserHome from '../components/content/UserHome'
+import Profile from './Profile.vue'
 
 export default {
     name: 'HomeView',
-    components: {AdminHome,UserHome}
+    components: {AdminHome,UserHome,Profile}
 }
 </script>
 
