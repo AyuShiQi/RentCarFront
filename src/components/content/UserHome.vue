@@ -53,7 +53,7 @@ export default {
                 alert('租车天数不可超过2年，请重新输入！');
                 return;
             }
-            rentCar(this.vehicleId,this.days).then(data=>{
+            rentCar(this.$store.state.userName,this.vehicleId,this.days).then(data=>{
                 alert('你需要支付的费用为:'+data.rent+',已加入订单，待支付');
                 this.active = false;
             }).catch(err=>{
