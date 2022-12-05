@@ -127,7 +127,7 @@ export const deleteCar = (vehicleId) => {
     });
 }
 
-export const rentCar = (vehicleId,days) => {
+export const rentCar = (userName,vehicleId,days) => {
     return new Promise((resolve,reject)=>{
         const instance = Axios.create({
             baseURL: '',
@@ -135,7 +135,7 @@ export const rentCar = (vehicleId,days) => {
         });
 
         instance.get("/rentCar",{
-            params: {vehicleId,days}
+            params: {userName,vehicleId,days}
         }).then(val=>resolve(val.data))
         .catch(err=>reject(err));
     })
@@ -155,7 +155,9 @@ export const getOrder = (userName) => {
 
         instance.get("/getOrder",{
             params: {userName}
-        }).then(val=>resolve(val.data))
+        }).then(val=>{
+            resolve(val.data)}
+        )
         .catch(err=>reject(err));
     })
 }
@@ -166,16 +168,29 @@ export const getOrder = (userName) => {
  * @param {*} vehicleId 
  * @returns 
  */
-export const payCar = (userName,vehicleId) => {
+export const payCar = (userName,vehicleId,rents) => {
     return new Promise((resolve,reject)=>{
         const instance = Axios.create({
             baseURL: '',
             timeout: 2000
         });
 
-        instance.get("/getOrder",{
-            params: {userName,vehicleId}
+        instance.get("/payOrder",{
+            params: {userName,vehicleId,rents}
         }).then(val=>resolve(val))
+        .catch(err=>reject(err));
+    })
+}
+
+export const getOrderInfos = () => {
+    return new Promise((resolve,reject)=>{
+        const instance = Axios.create({
+            baseURL: '',
+            timeout: 2000
+        });
+
+        instance.get("/getOrderInfos")
+        .then(val=>resolve(val.data))
         .catch(err=>reject(err));
     })
 }

@@ -14,27 +14,37 @@
                 <tr v-for="(p,index) in infos" :key="index">
                     <td v-for="(item,j) in p" :key="item+j">{{item}}</td>
                     <td>
-                        <a href="javascript:;" class="link-option" @click="pay(p.vehicleId)">支付</a>
+                        <a href="javascript:;" class="link-option" @click="pay(p.vehicleId,p.rents)">支付</a>
                     </td>
                 </tr>
             </table>
+        </div>
+        <div v-if="$store.state.isAdmin" class="profile-view_sum-part">
+            <h2>总订单数：{{allCount}}单</h2>
+            <h2>待支付订单数：{{noPayCount}}单</h2>
+            <h2>已完成订单数：{{payedCount}}单</h2>
+            <h2>总成交额：{{allRent}}元</h2>
         </div>
     </div>
 </template>
 
 <script>
-import { getOrder,payCar } from '../network'
+import { getOrder,payCar,getOrderInfos } from '../network'
 export default {
     name: 'ProfleView',
     data() {
         return {
             header: ['车牌号','待支付金额'],
             infos: [['asidjwn',300]],
+            allCount: 0,
+            noPayCount: 0,
+            payedCount: 0,
+            allRent: 0
         }
     },
     methods: {
-        pay(vehicleId) {
-            payCar(this.$store.state.userName,vehicleId).then(val=>{
+        pay(vehicleId,rents) {
+            payCar(this.$store.state.userName,vehicleId,rents).then(val=>{
                 alert('支付成功');
                 // 再次请求订单
                 this.getOrder();
@@ -48,11 +58,24 @@ export default {
             }).catch(err=>{
                 console.log(err);
             });
+        },
+        getOrderInfos() {
+            getOrderInfos()
+            .then(data=>{
+                this.allCount = data.allCount;
+                this.noPayCount = data.noPayCount;
+                this.payedCount = data.payedCount;
+                this.allRent = data.allRent;
+            }).catch(err=>{
+                console.log(err);
+            })
+            
         }
     },
     mounted() {
         // 请求订单infos
-        this.getOrder();
+        if(!this.$store.state.isAdmin) this.getOrder();
+        else this.getOrderInfos();
     }
 }
 </script>
@@ -67,7 +90,9 @@ export default {
         color: #2d3768;
     }
 
-    .profile-view_order-part {
+    .profile-view_order-part,
+    .profile-view_sum-part
+     {
         margin-top: 30px;
     }
 
