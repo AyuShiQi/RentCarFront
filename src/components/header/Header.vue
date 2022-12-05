@@ -40,6 +40,7 @@ export default {
         height: 49px;
         padding: 0 2%;
         background-color: #1e46ad;
+        box-shadow: 0 0 5px 0 #004cff;
         justify-content: space-between;
         align-items: center;
     }

@@ -1,7 +1,7 @@
 <template>
     <div class="login-box">
         <div class="logo">
-            <img src="../../assets/logo.png" alt="">
+            <img src="../../assets/logo.png" alt="logo">
         </div>
         <input type="text" class="login-input" :class="{'user-warning': isUserErr}" placeholder="用户名" ref="userName" @blur="checkUser">
         <input type="text" class="login-input" :class="{'user-warning': isPwErr}" placeholder="密码" ref="password" @blur="checkPw">
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import {commitLog} from '../../network'
+
 export default {
     name: 'LoginBox',
     data() {
@@ -23,11 +25,24 @@ export default {
             if(this.checkLogin()) {
                 let userName = this.$refs.userName.value;
                 let password = this.$refs.password.value;
-                
+                commitLog(userName,password).then(data=>{
+                    // 更新登录名字
+                    this.$store.commit('updateUserName',data.userName);
+                    // 更新是否登录
+                    this.$store.commit('updateLogin',true);
+                    // 更新是否为管理员
+                    this.$store.commit('updatePermission',data.permission);
+                    // 跳转去home页面
+                    this.$router.push('/home');
+                }).catch(e=>{
+                    console.log(e);
+                    // 没登录成功，提醒重新的登录
+                    alert("账号或密码错误，请重试！");
+                });
             }
         },
         checkLogin() {
-            return this.checkUser() && this.checkPw();
+            return this.checkUser() & this.checkPw();
         },
         checkUser() {
             if(this.$refs.userName.value==='') {

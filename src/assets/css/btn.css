@@ -1,0 +1,31 @@
+.red-btn {
+    background-color: #f56c6c;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.red-border-btn {
+    border: 1px solid #f56c6c;
+    color: #f56c6c;
+    background-color: #ffeaea;
+    border-radius: 5px;
+}
+
+.blue-btn {
+    border: 1px solid #6687db;
+    color: #6687db;
+    background-color: #d6f9df;
+    border-radius: 5px;
+}
+
+.green-btn {
+    background-color: #0ad7a4;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.yellow-btn {
+    background-color: #e6a23c;
+    color: #fff;
+    border-radius: 5px;
+}

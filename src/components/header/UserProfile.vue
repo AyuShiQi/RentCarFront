@@ -2,7 +2,7 @@
   <div class="user-profile">
         <p class="user-name">WelCome!</p>
         <router-link to="/profile" class="user-img">
-            <!-- <img src="" alt=""> -->
+            
         </router-link>
   </div>
 </template>

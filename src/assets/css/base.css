@@ -26,11 +26,25 @@ h6 {
     font-weight: 500;
 }
 
-input {
+input,
+select {
     border: none;
     outline: none;
 }
 
-button {
+select {
     cursor: pointer;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+table {
+   border-collapse: collapse; 
+}
+
+th {
+    font-weight: 500;
 }
